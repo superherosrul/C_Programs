@@ -1,0 +1,38 @@
+Vanessa Amfo-Ayeh vaa69
+02.20.26
+
+---Test Plan---
+For this project,
+1. Upload all the required files I need for this project
+2. Create all the components I need for mymalloc.c
+    -declare heap.bytes
+    -Create the Initialization (Refer to the Extra Notes)
+    -Create struct for the Header
+    -Create allocater, and free mark to keep track of the status of the chunks (Also created get_size(), round_up(), is_allocated)
+    -Create a leak detector so atexit() wil automatically check for leaks
+    -Create and initialize large heap of 4096 bytes which will serve as the length and space of memory
+    -Create mycoalesce function
+    -Implment myfree() and mymalloc()
+3. In the memgrind.c file create 5 workloads and design 2 of my own
+    -Create main() function to run all five workloads 50 times and report the time
+4. Create an amount of test files to check the implementation of mymalloc() and myfree()
+    -Explain the test files in Program Descriptions
+5. Lastly create the Makefile
+    -Use the slides from lecture and recitation to help
+
+---Program Descriptions---
+I created 5 individual test programs to test the correctness of mymalloc() and myfree().
+1. overlaptest
+    -The code will allocate 2 object a1 and a2. Using the memset function, it fills each object that the distinct byte pattern. Lastly, it'll check if each object will contain the written pattern and more importantly if the data overlapped. If the test reports that the memory did overlap, I wiil have to adjust mymalloc and myfree code.
+2. leaktest
+    -This will detected a leak. This test is supposed to return the leak detection. This test WILL output an error to make sure that the leak detection is functional.
+3. errortest
+    -This test was an example I pulled from the assignment writeup. The test WILL return an invalid pointer.
+4. freetest
+    -This test is NOT supposed to fail. This test is strictly made to check if myfree() is marking the blocks correctly. It should output "Free() works correctly."
+5. coalescetest
+    -This test is NOT supposed to fail. This test will check if coalescing function works. This should output "Coalescing works!"
+---Extra Notes---
+All allocations are rounded up to the nearest multiple of 8
+Leak detector cannot call exit()
+No metadata is stored inside payloads
