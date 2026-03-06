@@ -1,2 +1,2 @@
-# C-Training
-C++ programs to help learn C++
+# C Training
+C programs to help learn C
